@@ -19,4 +19,6 @@ public interface EmployeeServicesLocal {
 	Boolean deleteEmployee(Employee employee);
 
 	List<Employee> findAllEmployee();
+	
+	Employee loginEmployee(String login, String password);
 }
