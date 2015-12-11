@@ -9,8 +9,7 @@ import entities.Customer;
 @Remote
 public interface CustomerServicesRemote {
 	
-    Boolean addCustomer(Customer customer);
-	
+   
 	Boolean deleteCustomerById(Integer id);
 
 	Customer findCustomerById(Integer id);
@@ -21,8 +20,7 @@ public interface CustomerServicesRemote {
 
 	List<Customer> findAllCustomer();
 
-
-
+	Customer logIn(String email,String password);
 	Customer CustomerByCin(Integer cin);
 
 }
