@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:form>
+
+<h1> Ask For a Checkbook</h1>
+
+<h:panelGrid columns="2" style="width:500px;margin-left:5%;" >
+<h:outputText value="Number of papers" />
+<p:selectOneMenu value="#{demandeChequeBean.demandeCheque.nombreCheque}" >
+						
+						<f:selectItem itemLabel="10" itemValue="10" />
+						<f:selectItem itemLabel="25" itemValue="25"/>
+						<f:selectItem itemLabel="50" itemValue="50"/>
+						
+					</p:selectOneMenu>
+
+<p:commandButton action="#{demandeChequeBean.doAddDemandeCredit()}" value="Confirm" >
+
+</p:commandButton>
+</h:panelGrid>
+
+</h:form>
+</html>

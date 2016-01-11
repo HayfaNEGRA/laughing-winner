@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+<h:form>
+<table>
+<tr>
+<td> <img src="Image/Argent.jpg" alt="" /> </td>
+<td> <img src="Image/Golden.jpg" alt="" /> </td>
+<td> <img src="Image/premium.jpg" alt="" /> </td>
+</tr>
+<tr>
+<td> <h5> Argent card cartaaa zookk </h5></td>
+<td> <h1> Golden Card</h1></td>
+<td> <h1> Premium Card</h1> </td>
+</tr>
+
+
+</table>
+
+
+</h:form>
+
+<h1> Add Credit Card Request</h1>
+<br />
+<br />
+<h:form>
+<h:panelGrid columns="2" style="width:500px;margin-left:5%;" >
+<h:outputText value="Type of the card" />
+<p:selectOneMenu value="#{demandeCreditCardBean.demandeCard.typeCard}" >
+						
+						<f:selectItem itemLabel="Gold" itemValue="Gold" />
+						<f:selectItem itemLabel="Argent" itemValue="Argent"/>
+						<f:selectItem itemLabel="Premium" itemValue="Premium"/>
+						
+					</p:selectOneMenu>
+
+<p:commandButton action="#{demandeCreditCardBean.doAddDemandeCredit()}" value="Confirm" >
+
+</p:commandButton>
+</h:panelGrid>
+
+</h:form>
+
+
+
+
+
+
+</body>
+</html>
