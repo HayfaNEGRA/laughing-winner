@@ -87,7 +87,29 @@ public class CustomerServices implements CustomerServicesRemote,
 
 	@Override
 	public Customer logIn(String email, String password) {
-		return null;
+		Customer customer = null;
+		String jpql = "select e from Customer e where e.email=:param1 and e.password=:param2";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param1", email);
+		query.setParameter("param2", password);
+
+		try {
+			customer = (Customer) query.getSingleResult();
+		} catch (Exception e) {
+			System.out.println("user not found");
+		}
+
+		return customer;
+	}
+
+	@Override
+	public Boolean addCustomer(Customer customer) {
+		Boolean b = false;
+			
+			entityManager.persist(customer);
+			b = true;
+		
+		return b;
 	}
 
 	

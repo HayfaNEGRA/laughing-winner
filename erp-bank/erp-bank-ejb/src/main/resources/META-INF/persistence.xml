@@ -4,6 +4,26 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="erp-bank-ejb">
 		<jta-data-source>java:jboss/erp-bank</jta-data-source>
+		<class>entities.AccountCreationRequest</class>
+		<class>entities.AccountStatement</class>
+		<class>entities.BankAccount</class>
+		<class>entities.CallOffer</class>
+		<class>entities.CandidaciesDemands</class>
+		<class>entities.Cashier</class>
+		<class>entities.CertificateOfDeposit</class>
+		<class>entities.ChekingAccount</class>
+		<class>entities.Credit</class>
+		<class>entities.Customer</class>
+		<class>entities.DemandeCredit</class>
+		<class>entities.Employee</class>
+		<class>entities.HumanRessourceManager</class>
+		<class>entities.InventoryManager</class>
+		<class>entities.Materials</class>
+		<class>entities.Payslip</class>
+		<class>entities.Provider</class>
+		<class>entities.Reward</class>
+		<class>entities.SavingAccount</class>
+		<class>entities.TrainingSession</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 		</properties>

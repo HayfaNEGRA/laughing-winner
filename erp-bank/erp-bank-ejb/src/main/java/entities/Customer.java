@@ -16,6 +16,8 @@ import javax.persistence.*;
 public class Customer implements Serializable {
 
 	private List <BankAccount> bankAccounts;
+	private List <DemandeCredit> demandeCredits;
+	private List <Credit> credits;
 	private Integer customerID;
 	private Integer cin;
 	private String firstName;
@@ -28,6 +30,17 @@ public class Customer implements Serializable {
 	public Customer() {
 		super();
 	}  
+	
+	
+
+	public Customer(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
+
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 
@@ -87,5 +100,21 @@ public class Customer implements Serializable {
 	public void setBankAccounts(List <BankAccount> bankAccounts) {
 		this.bankAccounts = bankAccounts;
 	}
+	
+	@OneToMany(mappedBy="client")
+	public List <Credit> getCredits() {
+		return credits;
+	}
+	public void setCredits(List <Credit> credits) {
+		this.credits = credits;
+	}
+	@OneToMany(mappedBy="customer")
+	public List <DemandeCredit> getDemandeCredits() {
+		return demandeCredits;
+	}
+	public void setDemandeCredits(List <DemandeCredit> demandeCredits) {
+		this.demandeCredits = demandeCredits;
+	}
+	
    
 }

@@ -1,0 +1,41 @@
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+	<body>
+<h:form>
+
+	<p:menubar   >
+            <p:submenu label="Home" style="font-size:16px;" icon="ui-icon-gear" >
+            </p:submenu>
+            <p:submenu label="Actions" style="font-size:16px;" icon="ui-icon-gear" >
+             <p:menuitem value="My credits" style="font-size:16px;" icon="fa fa-gears" action = "#{demandeCreditBean.doAjouterDemande()}"/>
+             <p:menuitem value="Simulate a credit" style="font-size:16px;" icon="fa fa-gears" />
+             
+            </p:submenu>
+            
+            <p:submenu label="#{loginCustomerBean.customerLoggedIn.email}" style="font-size:16px;" icon="fa fa-user" >
+            <p:menuitem value="Log out" style="font-size:16px;" icon="fa fa-power-off" action="#{loginCustomerBean.doLogout()}" />
+          </p:submenu>
+ 
+           
+    </p:menubar>
+		
+	</h:form>
+	</body>	
+</html>
+	

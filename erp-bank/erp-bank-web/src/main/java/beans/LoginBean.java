@@ -3,8 +3,10 @@ package beans;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import services.interfaces.EmployeeServicesLocal;
+import entities.Cashier;
 import entities.Employee;
 import entities.HumanRessourceManager;
 
@@ -22,9 +24,12 @@ public class LoginBean {
 				employee.getEmail(), employee.getPassword());
 		if (employeeLoggedIn != null) {
 			if (employeeLoggedIn instanceof HumanRessourceManager) {
-				navigateTo = "/pages/hrHome";
+				navigateTo = "";
 			}
-
+			else if (employeeLoggedIn instanceof Cashier)
+			{
+				navigateTo = "menuDemande";
+			}
 		} else {
 			navigateTo = "error";
 		}
@@ -32,6 +37,8 @@ public class LoginBean {
 		return navigateTo;
 	}
 
+	
+	
 	public Employee getEmployee() {
 		return employee;
 	}
