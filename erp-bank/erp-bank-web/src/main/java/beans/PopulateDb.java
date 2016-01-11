@@ -42,9 +42,16 @@ public class PopulateDb {
 	@PostConstruct
 	public void initDb() {
 	
+		DemandeCredit demande= new DemandeCredit();
+		DemandeCredit demande2= new DemandeCredit();
 		
 		Cashier cashier = new Cashier();
-		
+		demande.setDescription("fghjklfghjklfghjk");
+		demande.setType("2");
+		demande.setMontant((float) 20);
+		demande2.setDescription("azertyuiop");
+		demande2.setType("1");
+		demande2.setMontant((float) 500);
 		Credit credit = new Credit();
 		credit.setMontantRestant((float) 40);
 		credit.setTypeCrédit("Normal");
@@ -52,7 +59,8 @@ public class PopulateDb {
 		cashier.setEmail("Joe2");
 		cashier.setPassword("Joe2");
 
-		
+		demandeCreditServicesRemote.adddemandecredit(demande2);
+		demandeCreditServicesRemote.adddemandecredit(demande);
 		creditServicesRemote.addcredit(credit);
 		cashierServicesRemote.addCashier(cashier);
 		

@@ -7,9 +7,29 @@
 
 <h:head></h:head>
 <body>
-	<h1>add user</h1>
-	<br />
+	
+<h:form>
 
+	<p:menubar   >
+            <p:submenu label="Home" style="font-size:16px;" icon="ui-icon-gear" >
+            </p:submenu>
+            <p:submenu label="Actions" style="font-size:16px;" icon="ui-icon-gear" >
+             <p:menuitem value="My credits" style="font-size:16px;" icon="fa fa-gears" action = "#{demandeCreditBean.doGoToMyCredit()}"/>
+             <p:menuitem value="Simulate a credit" style="font-size:16px;" icon="fa fa-gears" action="#{simulatorBean.goToStats()}"/>
+             
+            </p:submenu>
+            
+            <p:submenu label="#{loginCustomerBean.customerLoggedIn.email}" style="font-size:16px;" icon="fa fa-user" >
+            <p:menuitem value="Log out" style="font-size:16px;" icon="fa fa-power-off" action="#{loginCustomerBean.doLogout()}" />
+          </p:submenu>
+ 
+           
+    </p:menubar>
+    
+    <h1>Ask for a Credit</h1>
+	<br />
+		
+	</h:form>
 	<h:form>
 		<h:panelGrid columns="2" style="width:500px;margin-left:5%;" >
 		
@@ -18,10 +38,10 @@
 			
 			<h:outputText value="Type" />
 			<p:selectOneMenu value="#{demandeCreditBean.demande.type}" >
-						<f:selectItem itemLabel="Type.." itemValue=""/>
-						<f:selectItem itemLabel="Type 1" itemValue="Type1"/>
-						<f:selectItem itemLabel="Type 2" itemValue="Type2"/>
-						<f:selectItem itemLabel="Type 3" itemValue="Type3"/>
+						<f:selectItem itemLabel="Type" itemValue=""/>
+						<f:selectItem itemLabel="Direct Credit" itemValue="Type1"/>
+						<f:selectItem itemLabel="Housing Credit" itemValue="Type2"/>
+						<f:selectItem itemLabel="Auto Credit" itemValue="Type3"/>
 						
 					</p:selectOneMenu>
 
