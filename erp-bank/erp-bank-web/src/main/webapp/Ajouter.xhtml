@@ -39,9 +39,9 @@
 			<h:outputText value="Type" />
 			<p:selectOneMenu value="#{demandeCreditBean.demande.type}" >
 						<f:selectItem itemLabel="Type" itemValue=""/>
-						<f:selectItem itemLabel="Direct Credit" itemValue="Type1"/>
-						<f:selectItem itemLabel="Housing Credit" itemValue="Type2"/>
-						<f:selectItem itemLabel="Auto Credit" itemValue="Type3"/>
+						<f:selectItem itemLabel="Direct Credit" itemValue="Direct Credit"/>
+						<f:selectItem itemLabel="Housing Credit" itemValue="Housing Credit"/>
+						<f:selectItem itemLabel="Auto Credit" itemValue="Auto Credit"/>
 						
 					</p:selectOneMenu>
 
@@ -52,7 +52,7 @@
 			 <p:fileUpload fileUploadListener="#{demandeCreditBean.handleFileUpload}"
                 mode="advanced"
                 update="messages"
-                label="Select Images"  style="width:300px;"
+                label="Select File"  style="width:300px;"
            
                 allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
                 invalidSizeMessage="
@@ -76,7 +76,7 @@
 			</p:commandButton>
 			
 			
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" width="450px">
         <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
         <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
     </p:confirmDialog>

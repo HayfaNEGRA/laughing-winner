@@ -53,8 +53,23 @@ public class PopulateDb {
 		demande2.setType("1");
 		demande2.setMontant((float) 500);
 		Credit credit = new Credit();
+		Credit credit2 = new Credit();
+		Credit credit3 = new Credit();
+		Credit credit4 = new Credit();
+		Credit credit5 = new Credit();
+		Credit credit6 = new Credit();
 		credit.setMontantRestant((float) 40);
 		credit.setTypeCrédit("Normal");
+		credit2.setMontantRestant((float) 40);
+		credit2.setTypeCrédit("Normal");
+		credit3.setMontantRestant((float) 40);
+		credit3.setTypeCrédit("Pas Normal");
+		credit4.setMontantRestant((float) 40);
+		credit4.setTypeCrédit("Pas Normal");
+		credit5.setMontantRestant((float) 40);
+		credit5.setTypeCrédit("Normal");
+		credit6.setMontantRestant((float) 40);
+		credit6.setTypeCrédit("Bof");
 		
 		cashier.setEmail("Joe2");
 		cashier.setPassword("Joe2");
@@ -62,6 +77,12 @@ public class PopulateDb {
 		demandeCreditServicesRemote.adddemandecredit(demande2);
 		demandeCreditServicesRemote.adddemandecredit(demande);
 		creditServicesRemote.addcredit(credit);
+		creditServicesRemote.addcredit(credit2);
+		creditServicesRemote.addcredit(credit3);
+		creditServicesRemote.addcredit(credit4);
+		creditServicesRemote.addcredit(credit5);
+		creditServicesRemote.addcredit(credit6);
+		
 		cashierServicesRemote.addCashier(cashier);
 		
 

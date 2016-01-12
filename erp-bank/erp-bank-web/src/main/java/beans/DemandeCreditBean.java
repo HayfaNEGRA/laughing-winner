@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -16,6 +17,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.ToggleEvent;
+import org.primefaces.model.chart.PieChartModel;
 
 import services.interfaces.CreditServicesRemote;
 import services.interfaces.DemandeCreditServicesRemote;
@@ -30,6 +32,7 @@ public class DemandeCreditBean {
 	private List<DemandeCredit> demandes;
 	private Credit credit;
 	private List<Credit> credits;
+	private PieChartModel pieModel2;
 
 	@ManagedProperty("#{loginCustomerBean}")
 	private LoginCustomerBean login;
@@ -53,29 +56,63 @@ public class DemandeCreditBean {
 
 	}
 
+	 @PostConstruct
+	    public void init() {
+		 createPieModel2();
+	    }
+	 
+	   
+	     
+	    public PieChartModel getPieModel2() {
+	        return pieModel2;
+	    }
+	     
+	    
+	    private void createPieModel2() {
+	        pieModel2 = new PieChartModel();
+	         
+	        pieModel2.set("Type Normal", creditServicesRemote.countCreditByType("Normal"));
+	        pieModel2.set("Type Pas Normal", creditServicesRemote.countCreditByType("Pas Normal"));
+	        pieModel2.set("Type Bof", creditServicesRemote.countCreditByType("Bof"));
+	         
+	        pieModel2.setTitle("Credit Type Pie");
+	        pieModel2.setLegendPosition("e");
+	        pieModel2.setFill(false);
+	        pieModel2.setShowDataLabels(true);
+	        pieModel2.setDiameter(150);
+	    }
+	
+	
 	public DemandeCreditBean() {
 	}
 
 	public String doAddDemandeCredit() {
 		demande.setDateDemande(new Date());
+		demande.setCustomer(login.getCustomerLoggedIn());
 		demandeCreditServiceRemote.adddemandecredit(demande);
-
+		
 		return null;
 		
 
 	}
 
-	public String doDeleteDemandeCredit() {
-		demandeCreditServiceRemote.deletedemandecredit(demande);
+	public String doDeleteDemandeCredit(DemandeCredit c) {
+		demandeCreditServiceRemote.deletedemandecredit(c);
 		setDisplayform(false);
 
-		return "";
+		return "menuDemande?faces-redirect=true";
 	}
 
-	public String doUpdateDemandeCredit() {
-		demandeCreditServiceRemote.updatedemandecredit(demande);
-		setDisplayform(false);
-		return "";
+	public String doUpdateDemandeCredit(DemandeCredit c) {
+		
+		Credit C = new Credit();
+		C.setClient(c.getCustomer());
+		C.setMontantRestant(c.getMontant());
+		C.setTypeCrédit(c.getType());
+		C.setDateFin(c.getDateDemande());
+		creditServicesRemote.addcredit(C);
+		demandeCreditServiceRemote.deletedemandecredit(c);
+		return "menuDemande?faces-redirect=true";
 	}
 
 	public String doAjouterDemande() {
@@ -141,10 +178,10 @@ public class DemandeCreditBean {
 
 	public void handleFileUpload(FileUploadEvent event) {
 
-		File result = new File("C:\\Users\\Joe\\Desktop\\images\\"
+		File result = new File("C:\\Users\\Joe\\git\\laughing-winner\\erp-bank\\erp-bank-web\\src\\main\\webapp\\resources\\images\\"
 				+ event.getFile().getFileName());
 		demande.setFile(event.getFile().getFileName());
-		System.out.println("C:\\Users\\Joe\\Desktop\\images"
+		System.out.println("C:\\Users\\Joe\\Desktop\\images\\"
 				+ event.getFile().getFileName());
 
 		try {
