@@ -128,6 +128,102 @@ public class Employee implements Serializable {
 	public void setCIN(String cIN) {
 		CIN = cIN;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((CIN == null) ? 0 : CIN.hashCode());
+		result = prime * result + ((Email == null) ? 0 : Email.hashCode());
+		result = prime * result
+				+ ((FirstName == null) ? 0 : FirstName.hashCode());
+		result = prime * result
+				+ ((IdEmployee == null) ? 0 : IdEmployee.hashCode());
+		result = prime * result
+				+ ((IsDeleted == null) ? 0 : IsDeleted.hashCode());
+		result = prime * result
+				+ ((LastName == null) ? 0 : LastName.hashCode());
+		result = prime * result
+				+ ((Password == null) ? 0 : Password.hashCode());
+		result = prime * result + ((adress == null) ? 0 : adress.hashCode());
+		result = prime * result
+				+ ((birthDate == null) ? 0 : birthDate.hashCode());
+		result = prime * result
+				+ ((civilState == null) ? 0 : civilState.hashCode());
+		result = prime * result + kidsNumber;
+		result = prime * result + phoneNumber;
+		result = prime * result + ((sexe == null) ? 0 : sexe.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (CIN == null) {
+			if (other.CIN != null)
+				return false;
+		} else if (!CIN.equals(other.CIN))
+			return false;
+		if (Email == null) {
+			if (other.Email != null)
+				return false;
+		} else if (!Email.equals(other.Email))
+			return false;
+		if (FirstName == null) {
+			if (other.FirstName != null)
+				return false;
+		} else if (!FirstName.equals(other.FirstName))
+			return false;
+		if (IdEmployee == null) {
+			if (other.IdEmployee != null)
+				return false;
+		} else if (!IdEmployee.equals(other.IdEmployee))
+			return false;
+		if (IsDeleted == null) {
+			if (other.IsDeleted != null)
+				return false;
+		} else if (!IsDeleted.equals(other.IsDeleted))
+			return false;
+		if (LastName == null) {
+			if (other.LastName != null)
+				return false;
+		} else if (!LastName.equals(other.LastName))
+			return false;
+		if (Password == null) {
+			if (other.Password != null)
+				return false;
+		} else if (!Password.equals(other.Password))
+			return false;
+		if (adress == null) {
+			if (other.adress != null)
+				return false;
+		} else if (!adress.equals(other.adress))
+			return false;
+		if (birthDate == null) {
+			if (other.birthDate != null)
+				return false;
+		} else if (!birthDate.equals(other.birthDate))
+			return false;
+		if (civilState == null) {
+			if (other.civilState != null)
+				return false;
+		} else if (!civilState.equals(other.civilState))
+			return false;
+		if (kidsNumber != other.kidsNumber)
+			return false;
+		if (phoneNumber != other.phoneNumber)
+			return false;
+		if (sexe == null) {
+			if (other.sexe != null)
+				return false;
+		} else if (!sexe.equals(other.sexe))
+			return false;
+		return true;
+	}
 	
 	
    

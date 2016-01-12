@@ -17,77 +17,89 @@ import services.interfaces.HumanRessourceManagerServicesRemote;
  */
 @Stateless
 @LocalBean
-public class HumanRessourceManagerServices implements HumanRessourceManagerServicesRemote, HumanRessourceManagerServicesLocal {
+public class HumanRessourceManagerServices implements
+		HumanRessourceManagerServicesRemote, HumanRessourceManagerServicesLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-    /**
-     * Default constructor. 
-     */
-    public HumanRessourceManagerServices() {
-        // TODO Auto-generated constructor stub
-    }
-    public Boolean addhumanressource_manager(HumanRessourceManager humanressource_manager) {
-   		Boolean b = false;
-   				try {
-   					entityManager.persist(humanressource_manager);
-   					b = true;
-   				} catch (Exception e) {
-   					System.err.println("ouups ...");
-   				}
-   				return b;
-   	}
+	/**
+	 * Default constructor.
+	 */
+	public HumanRessourceManagerServices() {
+		// TODO Auto-generated constructor stub
+	}
 
-   	@Override
-   	public Boolean deletehumanressource_managerById(Integer id) {
-   		Boolean b = false;
-   				try {
-   					entityManager.remove(findhumanressource_managerById(id));
-   					b = true;
-   				} catch (Exception e) {
-   					System.err.println("ouups ...");
-   				}
-   				return b;
-   	}
+	public Boolean addhumanressource_manager(
+			HumanRessourceManager humanressource_manager) {
+		Boolean b = false;
+		try {
+			entityManager.persist(humanressource_manager);
+			b = true;
+		} catch (Exception e) {
+			System.err.println("ouups ...");
+		}
+		return b;
+	}
 
-   	@Override
-   	public HumanRessourceManager findhumanressource_managerById(Integer id) {
-   		return entityManager.find(HumanRessourceManager.class, id);
-   		
-   	}
+	@Override
+	public Boolean deletehumanressource_managerById(Integer id) {
+		Boolean b = false;
+		try {
+			entityManager.remove(findhumanressource_managerById(id));
+			b = true;
+		} catch (Exception e) {
+			System.err.println("ouups ...");
+		}
+		return b;
+	}
 
-   	@Override
-   	public Boolean updatehumanressource_manager(HumanRessourceManager humanressource_manager) {
-   		
-   		Boolean b = false;
-   				try {
-   					entityManager.merge(humanressource_manager);
-   					b = true;
-   				} catch (Exception e) {
-   					System.err.println("ouups ...");
-   				}
-   				return b;
-   	}
+	@Override
+	public HumanRessourceManager findhumanressource_managerById(Integer id) {
+		return entityManager.find(HumanRessourceManager.class, id);
 
-   	@Override
-   	public Boolean deletehumanressource_manager(HumanRessourceManager humanressource_manager) {
-   		Boolean b = false;
-   				try {
-   					entityManager.remove(entityManager.merge(humanressource_manager));
-   					b = true;
-   				} catch (Exception e) {
-   					System.err.println("ouups ...");
-   				}
-   				return b;
-   	}
+	}
 
-   	
-   	@Override
-   	public List<HumanRessourceManager> findAllHumanRessourceManager() {
-   		String jpql = "select e from HumanRessourceManager e";
-   				Query query = entityManager.createQuery(jpql);
-   				return query.getResultList();
-   	}
+	@Override
+	public Boolean updatehumanressource_manager(
+			HumanRessourceManager humanressource_manager) {
 
+		Boolean b = false;
+		try {
+			entityManager.merge(humanressource_manager);
+			b = true;
+		} catch (Exception e) {
+			System.err.println("ouups ...");
+		}
+		return b;
+	}
+
+	@Override
+	public Boolean deletehumanressource_manager(
+			HumanRessourceManager humanressource_manager) {
+		Boolean b = false;
+		try {
+			entityManager.remove(entityManager.merge(humanressource_manager));
+			b = true;
+		} catch (Exception e) {
+			System.err.println("ouups ...");
+		}
+		return b;
+	}
+
+	@Override
+	public List<HumanRessourceManager> findAllHumanRessourceManager() {
+		String jpql = "select e from HumanRessourceManager e";
+		Query query = entityManager.createQuery(jpql);
+		return query.getResultList();
+	}
+
+	@Override
+	public HumanRessourceManager Findhumanressource_managerByLastName(
+			String lastName) {
+		return (HumanRessourceManager) entityManager
+				.createQuery(
+						"select m from HumanRessourceManager m where m.lastName=:x")
+				.setParameter("x", lastName).getSingleResult();
+	}
 
 }

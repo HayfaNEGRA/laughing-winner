@@ -17,6 +17,8 @@ public class Customer implements Serializable {
 
 	private List <BankAccount> bankAccounts;
 	private List <DemandeCredit> demandeCredits;
+	private List <Demandecheque> demandeCheque;
+	private List <DemandeCreditCard> demandeCard;
 	private List <Credit> credits;
 	private Integer customerID;
 	private Integer cin;
@@ -114,6 +116,32 @@ public class Customer implements Serializable {
 	}
 	public void setDemandeCredits(List <DemandeCredit> demandeCredits) {
 		this.demandeCredits = demandeCredits;
+	}
+
+
+
+
+	@OneToMany(mappedBy="customer")
+	public List <DemandeCreditCard> getDemandeCard() {
+		return demandeCard;
+	}
+
+
+
+	public void setDemandeCard(List <DemandeCreditCard> demandeCard) {
+		this.demandeCard = demandeCard;
+	}
+
+
+	@OneToMany(mappedBy="customer")
+	public List <Demandecheque> getDemandeCheque() {
+		return demandeCheque;
+	}
+
+
+
+	public void setDemandeCheque(List <Demandecheque> demandeCheque) {
+		this.demandeCheque = demandeCheque;
 	}
 	
    

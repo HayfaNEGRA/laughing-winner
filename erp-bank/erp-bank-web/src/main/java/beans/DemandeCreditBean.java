@@ -43,7 +43,13 @@ public class DemandeCreditBean {
 
 	public void setLogin(LoginCustomerBean login) {
 		this.login = login;
-	}
+
+		}
+
+
+
+
+
 
 	private Boolean displayform = false;
 	@EJB

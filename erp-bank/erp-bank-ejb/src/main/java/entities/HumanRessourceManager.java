@@ -63,7 +63,7 @@ public class HumanRessourceManager extends Employee implements Serializable {
 	public void setRewards(List<Reward> rewards) {
 		this.rewards = rewards;
 	}
-	
+
 
 
 }
