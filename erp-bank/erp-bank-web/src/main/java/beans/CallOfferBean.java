@@ -33,7 +33,8 @@ public class CallOfferBean {
 	// injection of the proxy
 	@EJB
 	private CallOfferServicesLocal callOfferServicesLocal;
-	
+	@ManagedProperty(value = "#{loginCustomerBean}")
+	private LoginCustomerBean customerBean;
 
 	// Methods
 	public List<CallOffer> getCallOffers() {
@@ -139,5 +140,31 @@ String navigateTo = "";
 	public void setText(String text) {
 		this.text = text;
 	}
+
+	public Boolean getTest() {
+		return test;
+	}
+
+	public void setTest(Boolean test) {
+		this.test = test;
+	}
+
+	public CallOfferServicesLocal getCallOfferServicesLocal() {
+		return callOfferServicesLocal;
+	}
+
+	public void setCallOfferServicesLocal(
+			CallOfferServicesLocal callOfferServicesLocal) {
+		this.callOfferServicesLocal = callOfferServicesLocal;
+	}
+
+	public LoginCustomerBean getCustomerBean() {
+		return customerBean;
+	}
+
+	public void setCustomerBean(LoginCustomerBean customerBean) {
+		this.customerBean = customerBean;
+	}
+	
 
 }
