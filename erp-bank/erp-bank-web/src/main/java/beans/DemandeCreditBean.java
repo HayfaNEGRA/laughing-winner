@@ -32,6 +32,8 @@ public class DemandeCreditBean {
 	private List<DemandeCredit> demandes;
 	private Credit credit;
 	private List<Credit> credits;
+	private List<Credit> creditsAdmin;
+	private List<DemandeCredit> demandesAdmin;
 	private PieChartModel pieModel2;
 
 	@ManagedProperty("#{loginCustomerBean}")
@@ -59,6 +61,7 @@ public class DemandeCreditBean {
 	 @PostConstruct
 	    public void init() {
 		 createPieModel2();
+		 
 	    }
 	 
 	   
@@ -91,7 +94,9 @@ public class DemandeCreditBean {
 		demande.setCustomer(login.getCustomerLoggedIn());
 		demandeCreditServiceRemote.adddemandecredit(demande);
 		
-		return null;
+		return "myCredits?faces-redirect=true";
+		
+		
 		
 
 	}
@@ -122,9 +127,23 @@ public class DemandeCreditBean {
 	
 	public String doGoToMyCredit() {
 
-		return "myCredits";
+		
+		return "myCredits?faces-redirect=true";
+	}
+	
+public String doGoToAllCredits() {
+
+		
+		return "menuDemande?faces-redirect=true";
 	}
 
+public String doGoToChart() {
+
+	
+	return "charts?faces-redirect=true";
+}
+	
+	
 	public DemandeCreditServicesRemote getDemandeCreditServiceRemote() {
 		return demandeCreditServiceRemote;
 	}
@@ -147,7 +166,7 @@ public class DemandeCreditBean {
 	}
 
 	public List<DemandeCredit> getDemandes() {
-		demandes = demandeCreditServiceRemote.findAllDemandeCredit();
+		demandes = demandeCreditServiceRemote.findDemandeCreditByCustomer(login.getCustomerLoggedIn());
 		return demandes;
 	}
 
@@ -244,7 +263,7 @@ public class DemandeCreditBean {
 	}
 
 	public List<Credit> getCredits() {
-		credits = creditServicesRemote.findAllCredit();
+		credits = creditServicesRemote.findCreditByCustomer(login.getCustomerLoggedIn());
 		return credits;
 		
 	}
@@ -259,6 +278,24 @@ public class DemandeCreditBean {
 
 	public void setCredit(Credit credit) {
 		this.credit = credit;
+	}
+
+	public List<DemandeCredit> getDemandesAdmin() {
+		demandesAdmin=demandeCreditServiceRemote.findAllDemandeCredit();
+		return demandesAdmin;
+	}
+
+	public void setDemandesAdmin(List<DemandeCredit> demandesAdmin) {
+		this.demandesAdmin = demandesAdmin;
+	}
+
+	public List<Credit> getCreditsAdmin() {
+		creditsAdmin=creditServicesRemote.findAllCredit();
+		return creditsAdmin;
+	}
+
+	public void setCreditsAdmin(List<Credit> creditsAdmin) {
+		this.creditsAdmin = creditsAdmin;
 	}
 
 }

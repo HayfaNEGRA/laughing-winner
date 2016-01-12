@@ -88,9 +88,9 @@ public class DemandeCreditServices implements DemandeCreditServicesRemote, Deman
 	}
 	@Override
 	public List<DemandeCredit> findDemandeCreditByCustomer(Customer customer) {
-		String jpql = "select e from DemandeCredit e where e.customer.customer_customerID =:c";
+		String jpql = "select e from DemandeCredit e where e.customer =:c";
 		Query query = entityManager.createQuery(jpql);
-		query.setParameter("c", customer.getCustomerID());
+		query.setParameter("c", customer);
 		return query.getResultList();
 	}
 	

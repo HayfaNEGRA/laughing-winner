@@ -74,7 +74,8 @@ public class SimulatorBean {
 	
 	public String goToStats()
 	{
-		return "simulator";
+		
+		return "simulator?faces-redirect=true";
 	}
 
 	public void Calculer()

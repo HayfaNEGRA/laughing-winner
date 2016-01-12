@@ -31,13 +31,16 @@
 		
 	</h:form>
 	<h:form>
+	<p:growl id="msg" showDetail="true" life="3000" />
 		<h:panelGrid columns="2" style="width:500px;margin-left:5%;" >
 		
-			<h:outputText value="Montant" />
-			<p:inputText value="#{demandeCreditBean.demande.montant}" />
+			<h:outputText value="Amount" />
+			<p:inputText value="#{demandeCreditBean.demande.montant}" required="true"
+				requiredMessage="Please insert the amount"/>
 			
 			<h:outputText value="Type" />
-			<p:selectOneMenu value="#{demandeCreditBean.demande.type}" >
+			<p:selectOneMenu value="#{demandeCreditBean.demande.type}" required="true"
+				requiredMessage="Veuillez saisir votre mail">
 						<f:selectItem itemLabel="Type" itemValue=""/>
 						<f:selectItem itemLabel="Direct Credit" itemValue="Direct Credit"/>
 						<f:selectItem itemLabel="Housing Credit" itemValue="Housing Credit"/>
@@ -46,7 +49,8 @@
 					</p:selectOneMenu>
 
 			<h:outputText value="Description" />
-			<p:inputTextarea value="#{demandeCreditBean.demande.description}" />
+			<p:inputTextarea value="#{demandeCreditBean.demande.description}" required="true"
+				requiredMessage="Veuillez saisir la description"/>
 			
 			<h:outputText value="File" />
 			 <p:fileUpload fileUploadListener="#{demandeCreditBean.handleFileUpload}"
@@ -54,12 +58,13 @@
                 update="messages"
                 label="Select File"  style="width:300px;"
            
+			
                 allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
                 invalidSizeMessage="
                 The maximum file size allowed is 1 Megabyte !"
                 invalidFileMessage="You are allowed to upload only images !"
                 
-                />
+               required="true" />
  
 		</h:panelGrid>
 		<br></br>
@@ -71,7 +76,7 @@
 		
 		
 		<p:commandButton action="#{demandeCreditBean.doAddDemandeCredit()}" style="width:5%;margin-left:20.5%;"
-			value="add" >
+			value="add" update="@form" ajax="true">
 			<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 			</p:commandButton>
 			

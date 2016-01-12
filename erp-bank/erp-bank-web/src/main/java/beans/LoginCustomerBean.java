@@ -1,6 +1,7 @@
 package beans;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -27,8 +28,17 @@ public class LoginCustomerBean {
 				navigateTo = "homeCustomer";
 			
 		} else {
-			navigateTo = "logincustomer";
+		
+			FacesContext
+			.getCurrentInstance()
+			.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"NON AUTORISE",
+					null
+					
+			));
 		}
+		
 
 		return navigateTo;
 	}

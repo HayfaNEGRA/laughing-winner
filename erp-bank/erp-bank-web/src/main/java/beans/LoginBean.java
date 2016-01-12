@@ -48,7 +48,17 @@ public class LoginBean {
 
 		return navigateTo;
 	}
-
+	
+	public String doLogout(){
+		String navigateTo = null;
+		FacesContext
+		.getCurrentInstance()
+		.getExternalContext()
+		.getSessionMap()
+		.clear();
+		navigateTo = "/logincustomer?faces-redirect=true";
+		return navigateTo;
+	}
 	
 	
 	public Employee getEmployee() {
