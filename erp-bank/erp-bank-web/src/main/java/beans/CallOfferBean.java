@@ -27,6 +27,7 @@ public class CallOfferBean {
 	private List<CallOffer> callOffersFeltred;
 	private String password;
 	private String text;
+	private String description;
 	private Boolean test=false;
 	@Email(message = "must be a valid email")
 	private String email;
@@ -164,6 +165,14 @@ String navigateTo = "";
 
 	public void setCustomerBean(LoginCustomerBean customerBean) {
 		this.customerBean = customerBean;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 

@@ -12,7 +12,11 @@ import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import entities.Bid;
 import entities.CallOffer;
+import entities.Customer;
+import entities.InventoryManager;
+import entities.Provider;
 
 /**
  * Session Bean implementation class InitDB
@@ -31,6 +35,33 @@ public class InitDB {
 		formater = new SimpleDateFormat("dd-MM-yy");
 		String d =formater.format(aujourdhui);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		
+		Customer cust = new Customer();
+		cust.setEmail("haifanegra@esprit.tn");
+		cust.setPassword("password");
+		cust.setIsDeleted(false);
+		
+		Provider prov = new Provider();
+		prov.setEmail("haifanegra@esprit.tn");
+		prov.setPassword("password");
+		prov.setIsDeleted(false);
+		
+		InventoryManager im = new InventoryManager();
+		im.setEmail("haifanegra2@esprit.tn");
+		im.setPassword("password");
+		im.setIsDeleted(false);
+		
+		Bid bid= new Bid();
+		bid.setCallOfferName("name1");
+		bid.setProviderEmail("haifanegra@esprit.tn");
+		
+		Bid bid1= new Bid();
+		bid1.setCallOfferName("name2");
+		bid1.setProviderEmail("haifanegra@esprit.tn");
+		
+		Bid bid2= new Bid();
+		bid2.setCallOfferName("name3");
+		bid2.setProviderEmail("haifanegra@esprit.tn");
 		
 		Date date2 = simpleDateFormat.parse("25/12/2015");
 		CallOffer co1 = new CallOffer();
@@ -90,6 +121,12 @@ public class InitDB {
 		entityManager.persist(co5);
 		entityManager.persist(co6);
 		entityManager.persist(co7);
+		entityManager.persist(cust);
+		entityManager.persist(prov);
+		entityManager.persist(im);
+		entityManager.persist(bid);
+		entityManager.persist(bid1);
+		entityManager.persist(bid2);
 
 	}
 

@@ -21,9 +21,11 @@ public class Bid implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String providerEmail;
-	private String providerPassword;
+	private String callOfferName;
 	private Provider provider;
 	private CallOffer calloffer;
+	private String discription;
+	private String contactEmail;
 	private static final long serialVersionUID = 1L;
 
 	public Bid() {
@@ -56,11 +58,24 @@ public class Bid implements Serializable {
 	public void setProviderEmail(String providerEmail) {
 		this.providerEmail = providerEmail;
 	}
-	public String getProviderPassword() {
-		return providerPassword;
+	
+	public String getCallOfferName() {
+		return callOfferName;
 	}
-	public void setProviderPassword(String providerPassword) {
-		this.providerPassword = providerPassword;
+	public void setCallOfferName(String callOfferName) {
+		this.callOfferName = callOfferName;
+	}
+	public String getDiscription() {
+		return discription;
+	}
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
+	public String getContactEmail() {
+		return contactEmail;
+	}
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
 	}
    
 }
