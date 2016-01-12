@@ -7,9 +7,22 @@
       > 
 
 <h:head></h:head> 
+
+
 <body>
 	<h1>Manage Bids</h1>
 	<h:form>
+	<p:menubar   >
+            
+           
+            
+            <p:submenu label="#{loginCustomerBean.customerLoggedIn.email}" style="font-size:16px;" icon="fa fa-user" >
+            <p:menuitem value="Log out" style="font-size:16px;" icon="fa fa-power-off" action="#{loginCustomerBean.doLogout()}" />
+          </p:submenu>
+ 
+           
+    </p:menubar>
+    <p:spacer width="10"/>
 		<p:dataTable value="#{bidBean.bids2}" var="u" >
 			<p:column id="c1">
 				<f:facet name="header">
@@ -46,7 +59,7 @@
 			<h:outputText value="#{bidBean.bid.callOfferName}" />
 			<h:outputText value="Description:"></h:outputText>
 			<h:outputText value="#{bidBean.bid.discription}" />
-			<h:commandButton action="#{bidBean.doUpdateBid()}" value="Update" />
+			<h:commandButton action="#{bidBean.doDeleteBid()}" value="Accepte" />
 			<h:commandButton action="#{bidBean.doDeleteBid()}" value="Delete" />
 		</p:panelGrid>
 		

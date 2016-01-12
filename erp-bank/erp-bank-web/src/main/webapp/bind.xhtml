@@ -9,7 +9,21 @@
 <body>
 
 	<h:form>
-	
+	<p:menubar   >
+            
+            <p:submenu label="Services" style="font-size:16px;" icon="ui-icon-gear" >
+             <p:menuitem value="Call offers" style="font-size:16px;" icon="fa fa-gears" action = "#{callOfferBean.dofilter()}"/>
+             <p:menuitem value="manage bids" style="font-size:16px;" icon="fa fa-gears" action="#{callOfferBean.domanage()}"/>
+             
+            </p:submenu>
+            
+            <p:submenu label="#{loginCustomerBean.customerLoggedIn.email}" style="font-size:16px;" icon="fa fa-user" >
+            <p:menuitem value="Log out" style="font-size:16px;" icon="fa fa-power-off" action="#{loginCustomerBean.doLogout()}" />
+          </p:submenu>
+ 
+           
+    </p:menubar>
+    <p:spacer width="10"/>
 		<p:growl showDetail="true" />
 
 		<h:panelGrid columns="2" cellpadding="4">
@@ -20,8 +34,8 @@
 			<p:message for="email1" display="tooltip" />
 			<h:outputText value="#{callOfferBean.text}" />
 			<h:outputLabel value="Description:" />
-    <p:inputTextarea  rows="5" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="false" />
-    <h:outputText id="display"  value="#{callOfferBean.description}"/>
+    <p:inputTextarea  value="#{callOfferBean.description}" rows="5" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="false" />
+    <h:outputText id="display" />
 
 			<p:spacer height="5"/>
             <h:outputLabel   value="Upload required documents:" />
@@ -42,6 +56,7 @@
 			<p:commandButton value="Confirm Bid" ajax="false"
 				icon="ui-icon-check" validateClient="true"
 				actionListener="#{captchaBean.submit}"
+				 
 				action="#{bidBean.doaddBid()}" />
 
 		</h:panelGrid>

@@ -7,9 +7,26 @@
       > 
 
 <h:head></h:head> 
+
 <body>
+<h:form>
+<p:menubar   >
+            
+            <p:submenu label="Services" style="font-size:16px;" icon="ui-icon-gear" >
+             <p:menuitem value="Call offers" style="font-size:16px;" icon="fa fa-gears" action = "#{callOfferBean.dofilter()}"/>
+             <p:menuitem value="manage bids" style="font-size:16px;" icon="fa fa-gears" action="#{callOfferBean.domanage()}"/>
+             
+            </p:submenu>
+            
+            <p:submenu label="#{loginCustomerBean.customerLoggedIn.email}" style="font-size:16px;" icon="fa fa-user" >
+            <p:menuitem value="Log out" style="font-size:16px;" icon="fa fa-power-off" action="#{loginCustomerBean.doLogout()}" />
+          </p:submenu>
+ 
+           
+    </p:menubar>
+    <p:spacer width="10"/>
 	<h1>Manage Bids</h1>
-	<h:form>
+	
 		<p:dataTable value="#{bidBean.bids}" var="u" >
 			<p:column id="c1">
 				<f:facet name="header">
@@ -23,6 +40,7 @@
 				</f:facet>
 				<h:outputText value="#{u.discription}" />
 			</p:column>
+			
 			<p:column id="c3">
 				<f:facet name="header">
 					<h:outputText value="" />

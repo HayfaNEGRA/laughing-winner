@@ -39,7 +39,7 @@ public class CallOfferServices implements CallOfferServicesRemote, CallOfferServ
 				}
 				return b;
 	}
-
+  
 	@Override
 	public Boolean deletecall_offerById(Integer id) {
 		Boolean b = false;
@@ -97,5 +97,16 @@ public class CallOfferServices implements CallOfferServicesRemote, CallOfferServ
 		query.setParameter("param", name);
 		return query.getResultList();
 		}
+	  @Override
+	  	public Boolean deleteBidByname(String name) {
+	  		Boolean b = false;
+	  				try {
+	  					entityManager.remove(findbyname(name));
+	  					b = true;
+	  				} catch (Exception e) {
+	  					System.err.println("ouups ...");
+	  				}
+	  				return b;
+	  	}
 
 }

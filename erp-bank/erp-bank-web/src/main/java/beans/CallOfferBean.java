@@ -34,8 +34,8 @@ public class CallOfferBean {
 	// injection of the proxy
 	@EJB
 	private CallOfferServicesLocal callOfferServicesLocal;
-	@ManagedProperty(value = "#{loginCustomerBean}")
-	private LoginCustomerBean customerBean;
+	@ManagedProperty(value = "#{loginBean}")
+	private LoginBean customerBean;
 
 	// Methods
 	public List<CallOffer> getCallOffers() {
@@ -48,9 +48,23 @@ public class CallOfferBean {
 		String navigateTo = "CallOfferSelected";
 		return navigateTo;
 	}
+	public void doDEleteCallOffer(String email)
+	{
+		callOfferServicesLocal.deleteBidByname(email);
+	}
 
 	public String doBind() {
 		String navigateTo = "bind";
+		
+		return navigateTo;
+	}
+	public String dofilter() {
+		String navigateTo = "callOfferfilter";
+		
+		return navigateTo;
+	}
+	public String domanage() {
+		String navigateTo = "manageBid";
 		
 		return navigateTo;
 	}
@@ -159,11 +173,13 @@ String navigateTo = "";
 		this.callOfferServicesLocal = callOfferServicesLocal;
 	}
 
-	public LoginCustomerBean getCustomerBean() {
+	
+
+	public LoginBean getCustomerBean() {
 		return customerBean;
 	}
 
-	public void setCustomerBean(LoginCustomerBean customerBean) {
+	public void setCustomerBean(LoginBean customerBean) {
 		this.customerBean = customerBean;
 	}
 

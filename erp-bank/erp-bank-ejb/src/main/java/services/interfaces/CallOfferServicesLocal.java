@@ -23,4 +23,6 @@ Boolean addcall_offer(CallOffer call_offer);
 	List<CallOffer> findAllCallOffer();
 
 	List<Bid> findbyname(String name);
+
+	Boolean deleteBidByname(String name);
 }

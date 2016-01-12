@@ -26,6 +26,7 @@ public class Bid implements Serializable {
 	private CallOffer calloffer;
 	private String discription;
 	private String contactEmail;
+	private Boolean accepted;
 	private static final long serialVersionUID = 1L;
 
 	public Bid() {
@@ -76,6 +77,12 @@ public class Bid implements Serializable {
 	}
 	public void setContactEmail(String contactEmail) {
 		this.contactEmail = contactEmail;
+	}
+	public Boolean getAccepted() {
+		return accepted;
+	}
+	public void setAccepted(Boolean accepted) {
+		this.accepted = accepted;
 	}
    
 }

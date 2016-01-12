@@ -1,5 +1,6 @@
 package beans;
 
+
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -9,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 
 import entities.Bid;
 import services.interfaces.BidServicesLocal;
-import services.interfaces.CallOfferServicesLocal;
+
 
 
 @ManagedBean
@@ -28,26 +29,26 @@ public class BidBean {
 		
 		@ManagedProperty(value = "#{callOfferBean}")
 		private CallOfferBean callOfferBean;
-		@ManagedProperty(value = "#{loginCustomerBean}")
-		private LoginCustomerBean customerBean;
+		@ManagedProperty(value = "#{loginBean}")
+		private LoginBean customerBean;
 		
 		
-		public LoginCustomerBean getCustomerBean() {
-			return customerBean;
-		}
-
-		public void setCustomerBean(LoginCustomerBean customerBean) {
-			this.customerBean = customerBean;
-		}
+		
 
 		public void doaddBid()
 		{
-		bid.setProviderEmail(callOfferBean.getCustomerBean().getCustomerLoggedIn().getEmail());
+		bid.setProviderEmail(callOfferBean.getCustomerBean().getEmployeeLoggedIn().getEmail());
 	    bid.setCallOfferName(callOfferBean.getCallOfferSelected().getName());
 	    bid.setContactEmail(callOfferBean.getText());
 	    bid.setDiscription(callOfferBean.getDescription());
 	    
 			bidServicesLocal.addBid(bid);
+			domanage();
+		}
+		public String domanage() {
+			String navigateTo = "manageBid";
+			
+			return navigateTo;
 		}
 		
 		public void doDeleteBid() {
@@ -56,12 +57,21 @@ public class BidBean {
 			
 			
 		}
-		public void acceptBid()
-		{
-			
-		}
+		
 		
 
+		public void doUpdateBid2(Bid bid) {
+			bid.setAccepted(true);
+			bidServicesLocal.updateBid(bid);
+			displayform = false;
+			
+		}
+		public void acceptBid()
+		{
+			callOfferBean.doDEleteCallOffer(bid.getProviderEmail());
+			doUpdateBid2(bid);
+			
+		}
 		public void doUpdateBid() {
 			bidServicesLocal.updateBid(bid);
 			displayform = false;
@@ -80,8 +90,17 @@ public class BidBean {
 			this.bid = bid;
 		}
 
+		public LoginBean getCustomerBean() {
+			return customerBean;
+		}
+		public void setCustomerBean(LoginBean customerBean) {
+			this.customerBean = customerBean;
+		}
+		public void setBids2(List<Bid> bids2) {
+			this.bids2 = bids2;
+		}
 		public List<Bid> getBids() {
-			bids = bidServicesLocal.findbyemail(customerBean.getCustomerLoggedIn().getEmail());
+			bids = bidServicesLocal.findbyemail(customerBean.getEmployeeLoggedIn().getEmail());
 			
 			return bids;
 		}
@@ -132,6 +151,7 @@ public class BidBean {
 			String navigateTo = "bidSelected";
 			return navigateTo;
 		}
+		
 
 		
 

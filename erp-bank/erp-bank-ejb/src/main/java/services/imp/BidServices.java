@@ -32,7 +32,7 @@ public class BidServices implements BidServicesRemote, BidServicesLocal {
     public Boolean addBid(Bid Bid) {
   		Boolean b = false;
   				
-  					entityManager.persist(Bid);
+  					entityManager.merge(Bid);
   					b = true;
   				
   				return b;
