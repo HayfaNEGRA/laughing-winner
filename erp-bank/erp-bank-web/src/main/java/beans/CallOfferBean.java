@@ -45,6 +45,7 @@ public class CallOfferBean {
 	}
 
 	public String doselect() {
+		//?faces-redirect=true
 		String navigateTo = "CallOfferSelected";
 		return navigateTo;
 	}
