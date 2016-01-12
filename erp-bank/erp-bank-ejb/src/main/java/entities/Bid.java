@@ -2,8 +2,10 @@ package entities;
 
 import entities.CallOffer;
 import entities.Provider;
+
 import java.io.Serializable;
 import java.lang.Integer;
+
 import javax.persistence.*;
 
 /**
@@ -16,6 +18,7 @@ public class Bid implements Serializable {
 
 	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String providerEmail;
 	private String providerPassword;
