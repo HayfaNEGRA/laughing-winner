@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+
+
+	<h:form id="loginForm" style="margin-left:37%;">
+		<p:growl id="msg" showDetail="true" life="3000" />
+
+
+		<p:panel header="Bienvenue"
+			style="width: 300px;background-image: url(images/tx.jpg);">
+
+			<br />
+
+
+
+
+
+			<p:outputLabel style="margin-left:5%;" value="Email" />
+
+			<p:inputText style="margin-left:14%;" id="username"
+				value="#{loginBean.employee.email}" required="true"
+				requiredMessage="Veuillez saisir votre mail"></p:inputText>
+
+			<br />
+
+			<br />
+			<br />
+
+
+
+			<p:outputLabel style="margin-left:5%;" value="Password" />
+
+			<p:password style="margin-left:6%;" id="password"
+				value="#{loginBean.employee.password}" feedback="false"
+				required="true" requiredMessage="Veuillez saisir un Password"></p:password>
+
+
+			<br />
+
+
+			<br />
+
+
+
+
+			<p:commandButton style="width:80px;height:25px; margin-left:60%;"
+				action="#{loginBean.doLoginEmployee()}" value="Login"
+				update="@form" ajax="true">
+
+
+			</p:commandButton>
+
+
+
+
+
+		</p:panel>
+
+	</h:form>
+
+</body>
+</html>
