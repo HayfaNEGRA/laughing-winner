@@ -14,6 +14,18 @@
 		<p:column style="width:16px">
             <p:rowToggler />
         </p:column>
+        <p:column id="c">
+				<f:facet name="header">
+					<h:outputText value="Number" />
+				</f:facet>
+				<h:outputText value="#{u.idDemande}" />
+			</p:column>
+			<p:column id="c8">
+				<f:facet name="header">
+					<h:outputText value="Customer" />
+				</f:facet>
+				<h:outputText value="#{u.customer.email}" />
+			</p:column>
 			<p:column id="c1">
 				<f:facet name="header">
 					<h:outputText value="Type" />
@@ -32,32 +44,96 @@
 				</f:facet>
 				<h:outputText value="#{u.montant}" />
 			</p:column>
+			<p:column id="c4">
+				<f:facet name="header">
+					<h:outputText value="Date" />
+				</f:facet>
+				<h:outputText value="#{u.dateDemande}" />
+			</p:column>
 			 <p:rowExpansion>
             <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">
                 
- 
-                <h:outputText value="Year" />
+ 				
+ 				<h:outputText value="Customer" />
+                <h:outputText value="#{u.customer.email}" />
+ 				
+                <h:outputText value="Amount" />
                 <h:outputText value="#{u.montant}" />
  
-                <h:outputText value="Color:" />
+                <h:outputText value="Description" />
                 <h:outputText value="#{u.description}" />
  
-                <h:outputText value="Price" />
+                <h:outputText value="Type" />
                 <h:outputText value="#{u.type}" />
                 
+                <h:outputText value="Date" />
+                <h:outputText value="#{u.dateDemande}" />
+                
                 <h:outputText value="document :"/>
-                <p:commandButton value="Modal" type="button" onclick="PF('dlg2').show();" />
+                <p:commandButton value="View" type="button" onclick="PF('dlg2').show();" />
+                
+                <p:commandButton value="Accept" action="#{demandeCreditBean.doUpdateDemandeCredit(u)}" />
+                <p:commandButton value="Decline" action="#{demandeCreditBean.doDeleteDemandeCredit(u)}" />
             </p:panelGrid>
         </p:rowExpansion>
 
 		</p:dataTable>
-<p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" style="width:70%">
-     <p:graphicImage url="/WEB-INF/images/#{demandeCreditBean.image}" style="width:25px" />
+<p:dialog header="Document" widgetVar="dlg2" modal="true" style="width:70%">
+     <p:graphicImage value="/resources/images/#{demandeCreditBean.demande.file}" style="width:500px" />
 </p:dialog> 
+
+
+
+
  
 	</h:form>
 
-	<p:graphicImage url="/webapp/WEB-INF/images/WWW.YTS.TO.jpg" style="width:500px" />	
+	
+
+<br></br>
+	<h1>List of Credits</h1>
+	<h:form>
+		<p:dataTable value="#{demandeCreditBean.credits}" var="u" border="2" style="width:500px" >
+		
+		
+        <p:column id="c9">
+				<f:facet name="header">
+					<h:outputText value="Number" />
+				</f:facet>
+				<h:outputText value="#{u.idCredit}" />
+			</p:column>
+			 <p:column id="c">
+				<f:facet name="header">
+					<h:outputText value="Customer" />
+				</f:facet>
+				<h:outputText value="#{u.client.email}" />
+			</p:column>
+			<p:column id="c1">
+				<f:facet name="header">
+					<h:outputText value="Type" />
+				</f:facet>
+				<h:outputText value="#{u.typeCrédit}" />
+			</p:column>
+			<p:column id="c2">
+				<f:facet name="header">
+					<h:outputText value="Still to pay" />
+				</f:facet>
+				<h:outputText value="#{u.montantRestant}" />
+			</p:column>
+			<p:column id="c3">
+				<f:facet name="header">
+					<h:outputText value="Date" />
+				</f:facet>
+				<h:outputText value="#{u.dateFin}" />
+			</p:column>
+			
+
+		</p:dataTable>
+
+ 
+	</h:form>
+
+
 
 </body>
 </html>

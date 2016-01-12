@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+
+		<p:menubar>
+			<p:submenu label="Home" style="font-size:16px;" icon="ui-icon-gear">
+			</p:submenu>
+			<p:submenu label="Actions" style="font-size:16px;"
+				icon="ui-icon-gear">
+				<p:menuitem value="My credits" style="font-size:16px;"
+					icon="fa fa-gears" action="#{demandeCreditBean.doGoToMyCredit()}" />
+				<p:menuitem value="Simulate a credit" style="font-size:16px;"
+					icon="fa fa-gears" action="#{simulatorBean.goToStats()}"/>
+
+			</p:submenu>
+
+			<p:submenu label="#{loginCustomerBean.customerLoggedIn.email}"
+				style="font-size:16px;" icon="fa fa-user">
+				<p:menuitem value="Log out" style="font-size:16px;"
+					icon="fa fa-power-off" action="#{loginCustomerBean.doLogout()}" />
+			</p:submenu>
+
+
+		</p:menubar>
+
+		<h1>Simulator</h1>
+		
+
+	</h:form>
+	<h:form>
+		<h:panelGrid columns="2" style="width:200px">
+
+
+			<h:form>
+				<p:growl id="growl" showDetail="true" />
+				<p:separator />
+
+				<h3>Amount (DT)</h3>
+				<h:panelGrid columns="1" style="margin-bottom: 20px; width:250px;">
+					<p:inputText id="txt5" value="#{simulatorBean.montant}" style="width:100px;" />
+					<p:slider for="txt5" maxValue="50000">
+						
+					</p:slider>
+				</h:panelGrid>
+
+				<p:separator />
+
+				<h3>Duration in months</h3>
+				<h:panelGrid columns="1" style="margin-bottom: 20px; width:250px;">
+					<p:inputText id="txt6" value="#{simulatorBean.months}" style="width:100px;" />
+					<p:slider for="txt6" minValue="3" maxValue="84">
+						
+					</p:slider>
+				</h:panelGrid>
+				
+				<p:separator />
+
+				<h3>Interest rate (%)</h3>
+				<h:panelGrid columns="1" style="margin-bottom: 20px; width:250px;">
+					<p:inputText id="txt7" value="#{simulatorBean.poucentage}" style="width:100px;" />
+					<p:slider for="txt7" maxValue="10">
+					
+					</p:slider>
+				</h:panelGrid>
+
+				<p:separator />
+				<h3>Monthly income (DT) </h3>
+				<h:panelGrid columns="1" style="margin-bottom: 20px; width:250px;">
+					<p:inputText id="txt8" value="#{simulatorBean.income}" style="width:100px;" />
+
+				</h:panelGrid>
+				<p:separator />
+
+ 
+    <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show();" action="#{simulatorBean.Calculer()}"  />
+ 
+    <p:dialog header="Calculator" showEffect="fade" hideEffect="fade" widgetVar="dlg" >
+        <h:panelGrid id="display" columns="1" cellpadding="5" style="width:600px;" >
+            <h:outputText value="You are requesting a credit of : #{simulatorBean.montant} Dinars"/>
+            <h:outputText value="With a duration of : #{simulatorBean.months} months"/>
+            <h:outputText value="The monthly repaiement is : #{simulatorBean.resultat}  Dinars"/>
+        </h:panelGrid>
+    </p:dialog>
+			</h:form>
+
+		</h:panelGrid>
+		<br></br>
+
+
+
+	</h:form>
+</body>
+</html>

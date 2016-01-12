@@ -14,4 +14,22 @@
     <param-name>primefaces.THEME</param-name>
     <param-value>bluesky</param-value>
   </context-param>
+  
+  <filter>
+  <filter-name>PrimeFaces FileUpload Filter</filter-name>
+  <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+</filter>
+<filter-mapping>
+  <filter-name>PrimeFaces FileUpload Filter</filter-name>
+  <servlet-name>Faces Servlet</servlet-name>
+</filter-mapping>
+<context-param>
+    <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+    <param-value>6LfP-RQTAAAAAP5dELGp4i5JFJCaOAhzGw-pCblJ</param-value>
+</context-param>
+
+<context-param>
+    <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+    <param-value>6LfP-RQTAAAAANthZIGoSsy3HG1CgdsRWhPFOwdm</param-value>
+</context-param>
 </web-app>

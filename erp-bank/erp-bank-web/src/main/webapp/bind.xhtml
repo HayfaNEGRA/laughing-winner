@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+	<p:menubar   >
+            
+            <p:submenu label="Services" style="font-size:16px;" icon="ui-icon-gear" >
+             <p:menuitem value="Call offers" style="font-size:16px;" icon="fa fa-gears" action = "#{callOfferBean.dofilter()}"/>
+             <p:menuitem value="manage bids" style="font-size:16px;" icon="fa fa-gears" action="#{callOfferBean.domanage()}"/>
+             
+            </p:submenu>
+            
+            <p:submenu label="#{loginCustomerBean.customerLoggedIn.email}" style="font-size:16px;" icon="fa fa-user" >
+            <p:menuitem value="Log out" style="font-size:16px;" icon="fa fa-power-off" action="#{loginCustomerBean.doLogout()}" />
+          </p:submenu>
+ 
+           
+    </p:menubar>
+    <p:spacer width="10"/>
+		<p:growl showDetail="true" />
+
+		<h:panelGrid columns="2" cellpadding="4">
+			<h:outputLabel for="email1" value="Email:" />
+			<p:inputText id="email1" value="#{callOfferBean.text}">
+				<f:validator validatorId="custom.emailValidator" />
+			</p:inputText>
+			<p:message for="email1" display="tooltip" />
+			<h:outputText value="#{callOfferBean.text}" />
+			<h:outputLabel value="Description:" />
+    <p:inputTextarea  value="#{callOfferBean.description}" rows="5" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="false" />
+    <h:outputText id="display" />
+
+			<p:spacer height="5"/>
+            <h:outputLabel   value="Upload required documents:" />
+			<p:fileUpload  fileUploadListener="#{fileUploadController.upload}"
+				allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="100000"
+				description="Upload required documents" />
+				
+
+			<p:messages showDetail="true" />
+
+			<p:spacer height="10" />
+
+			<p:captcha label="Captcha" />
+
+			<p:spacer height="10" />
+			Click to apply for this call offer: 
+<p:spacer height="10" />
+			<p:commandButton value="Confirm Bid" ajax="false"
+				icon="ui-icon-check" validateClient="true"
+				actionListener="#{captchaBean.submit}"
+				 
+				action="#{bidBean.doaddBid()}" />
+
+		</h:panelGrid>
+
+
+
+	</h:form>
+
+	<script type="text/javascript">
+    /**
+     * Faces Validator
+     */
+    PrimeFaces.validator['custom.emailValidator'] = {
+ 
+        pattern: /\S+@\S+/,
+ 
+        validate: function(element, value) {
+            //use element.data() to access validation metadata, in this case there is none.
+            if(!this.pattern.test(value)) {
+                throw {
+                    summary: 'Validation Error',
+                    detail: value + ' is not a valid email.'
+                }
+            }
+        }
+    };
+ 
+    /**
+     * Bean validator
+     */
+    PrimeFaces.validator['Email'] = {
+ 
+        pattern: /\S+@\S+/,
+ 
+        MESSAGE_ID: 'org.primefaces.examples.validate.email.message',
+ 
+        validate: function(element, value) {
+            var vc = PrimeFaces.util.ValidationContext;
+ 
+            if(!this.pattern.test(value)) {
+                var msgStr = element.data('p-email-msg'),
+                msg = msgStr ? {summary:msgStr, detail: msgStr} : vc.getMessage(this.MESSAGE_ID);
+ 
+                throw msg;
+            }
+        }
+    };
+</script>
+</body>
+
+</html>

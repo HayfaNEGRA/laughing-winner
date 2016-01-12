@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import entities.Bid;
 import entities.CallOffer;
 import services.interfaces.CallOfferServicesLocal;
 import services.interfaces.CallOfferServicesRemote;
@@ -38,7 +39,7 @@ public class CallOfferServices implements CallOfferServicesRemote, CallOfferServ
 				}
 				return b;
 	}
-
+  
 	@Override
 	public Boolean deletecall_offerById(Integer id) {
 		Boolean b = false;
@@ -89,5 +90,23 @@ public class CallOfferServices implements CallOfferServicesRemote, CallOfferServ
 				Query query = entityManager.createQuery(jpql);
 				return query.getResultList();
 	}
+	@Override
+	public List<Bid> findbyname(String name) {
+  		String jpql = "select e from CallOffer e where e.name=:param";
+  		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param", name);
+		return query.getResultList();
+		}
+	  @Override
+	  	public Boolean deleteBidByname(String name) {
+	  		Boolean b = false;
+	  				try {
+	  					entityManager.remove(findbyname(name));
+	  					b = true;
+	  				} catch (Exception e) {
+	  					System.err.println("ouups ...");
+	  				}
+	  				return b;
+	  	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import entities.Bid;
 import entities.CallOffer;
 
 @Local
@@ -20,4 +21,8 @@ Boolean addcall_offer(CallOffer call_offer);
 	Boolean deletecall_offer(CallOffer call_offer);
 
 	List<CallOffer> findAllCallOffer();
+
+	List<Bid> findbyname(String name);
+
+	Boolean deleteBidByname(String name);
 }

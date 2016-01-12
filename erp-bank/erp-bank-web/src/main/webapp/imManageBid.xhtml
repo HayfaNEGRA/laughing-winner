@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      > 
+
+<h:head></h:head> 
+
+
+<body>
+	<h1>Manage Bids</h1>
+	<h:form>
+	<p:menubar   >
+            
+           
+            
+            <p:submenu label="#{loginCustomerBean.customerLoggedIn.email}" style="font-size:16px;" icon="fa fa-user" >
+            <p:menuitem value="Log out" style="font-size:16px;" icon="fa fa-power-off" action="#{loginCustomerBean.doLogout()}" />
+          </p:submenu>
+ 
+           
+    </p:menubar>
+    <p:spacer width="10"/>
+		<p:dataTable value="#{bidBean.bids2}" var="u" >
+			<p:column id="c1">
+				<f:facet name="header">
+					<h:outputText value="Call offer" />
+				</f:facet>
+				<h:outputText value="#{u.callOfferName}" />
+			</p:column>
+			<p:column id="c7">
+				<f:facet name="header">
+					<h:outputText value="Provider email" />
+				</f:facet>
+				<h:outputText value="#{u.providerEmail}" />
+			</p:column>
+			<p:column id="c2">
+				<f:facet name="header">
+					<h:outputText value="Description" />
+				</f:facet>
+				<h:outputText value="#{u.discription}" />
+			</p:column>
+			<p:column id="c3">
+				<f:facet name="header">
+					<h:outputText value="" />
+				</f:facet>
+				<h:commandButton action="#{bidBean.doSelect()}" value="Select">
+					<f:setPropertyActionListener value="#{u}" target="#{bidBean.bid}"></f:setPropertyActionListener>
+				</h:commandButton>
+			</p:column>
+
+		</p:dataTable>
+		<p:spacer height="10"/>
+        
+		<p:panelGrid columns="2" rendered="#{bidBean.displayform}">
+			<h:outputText value="Call OfferName: "></h:outputText>
+			<h:outputText value="#{bidBean.bid.callOfferName}" />
+			<h:outputText value="Description:"></h:outputText>
+			<h:outputText value="#{bidBean.bid.discription}" />
+			<h:commandButton action="#{bidBean.doDeleteBid()}" value="Accepte" />
+			<h:commandButton action="#{bidBean.doDeleteBid()}" value="Delete" />
+		</p:panelGrid>
+		
+	</h:form>
+</body>
+</html>

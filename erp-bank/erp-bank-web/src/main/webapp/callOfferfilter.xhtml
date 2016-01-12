@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui">
+       
+
+<h:head></h:head> 
+<body> 
+<h:form>
+<p:menubar   >
+            
+            <p:submenu label="Services" style="font-size:16px;" icon="ui-icon-gear" >
+             <p:menuitem value="Call offers" style="font-size:16px;" icon="fa fa-gears" action = "#{callOfferBean.dofilter()}"/>
+             <p:menuitem value="manage bids" style="font-size:16px;" icon="fa fa-gears" action="#{callOfferBean.domanage()}"/>
+             
+            </p:submenu>
+            
+            <p:submenu label="#{loginCustomerBean.customerLoggedIn.email}" style="font-size:16px;" icon="fa fa-user" >
+            <p:menuitem value="Log out" style="font-size:16px;" icon="fa fa-power-off" action="#{loginCustomerBean.doLogout()}" />
+          </p:submenu>
+ 
+           
+    </p:menubar>
+    <p:spacer width="10"/>
+    <p:dataTable var="callOffer" value="#{callOfferBean.callOffers}" widgetVar="callOffersTable"
+                 emptyMessage="No call Offer found with given criteria" filteredValue="#{callOfferBean.callOffersFeltred}" rows="10"
+                         paginator="true"
+                        
+                         rowsPerPageTemplate="5,10,15"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                 style="margin-bottom:20px">
+ 
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('callOffersTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
+        
+        <p:column filterBy="#{callOffer.id}" headerText="Id" footerText="" filterMatchMode="contains">
+            <h:outputText value="#{callOffer.id}" />
+        </p:column>
+         
+         <p:column filterBy="#{callOffer.name}" headerText="Title" footerText="" filterMatchMode="contains">
+            <h:outputText value="#{callOffer.name}" />
+        </p:column>
+        
+         <p:column filterBy="#{callOffer.description}" headerText="Description" footerText="" filterMatchMode="contains">
+            <h:outputText value="#{callOffer.description}" />
+        </p:column>
+        <p:column filterBy="#{callOffer.quantity}" headerText="Quantity" footerText="" filterMatchMode="contains">
+            <h:outputText value="#{callOffer.quantity}" />
+        </p:column>
+    <p:column filterBy="#{callOffer.price}" headerText="Price" footerText="custom (min)" filterFunction="#{callOfferBean.filterByPrice}">
+            <h:outputText value="#{callOffer.price}">
+                <f:convertNumber currencySymbol="$" type="currency"/>
+            </h:outputText>
+        </p:column>
+        <p:column >
+				<f:facet name="header">
+					<h:outputText value="" />
+				</f:facet>
+				<h:commandButton action="#{callOfferBean.doselect()}" value="Check offer">
+					<f:setPropertyActionListener value="#{callOffer}" target="#{callOfferBean.callOfferSelected}"></f:setPropertyActionListener>
+				</h:commandButton>
+			</p:column>
+			
+
+
+			
+       </p:dataTable>
+    
+</h:form>
+
+</body> 
+</html>

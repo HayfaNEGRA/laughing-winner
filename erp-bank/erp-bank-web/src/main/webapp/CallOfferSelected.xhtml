@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+
+
+	<h:form>
+		<p:accordionPanel value="#{callOfferBean.callOfferSelected}" var="c">
+			<p:tab title="Call Offer : #{c.id}">
+				<h:panelGrid columns="2" cellpadding="5">
+					<f:facet name="header">
+						<p:graphicImage library="/resources/Images" name="img.png" />
+					</f:facet>
+					<h:outputText value="call offer title:" style="font-weight: bold" />
+					<h:outputText value="#{c.name}" />
+
+					<h:outputText value="Further information:"
+						style="font-weight: bold" />
+					<h:outputText value="#{c.description}" />
+
+					<h:outputText value="Budget:" style="font-weight: bold" />
+					<h:outputText value="#{c.price}$" />
+
+					<h:outputText value="Quantity required:" style="font-weight: bold" />
+					<h:outputText value="#{c.quantity}" />
+
+					<h:outputText value="Deadline:" style="font-weight: bold" />
+					<h:outputText value="#{callOfferBean.dateToString()}" />
+					<h:commandButton action="#{downloadBean.downloadPdf}"
+						value="download the call offer document">
+
+					</h:commandButton>
+
+
+
+				</h:panelGrid>
+
+			</p:tab>
+		</p:accordionPanel>
+		<h:commandButton action="#{callOfferBean.doBind()}"
+			value="Bind for this offer">
+
+		</h:commandButton>
+	</h:form>
+</body>
+</html>
