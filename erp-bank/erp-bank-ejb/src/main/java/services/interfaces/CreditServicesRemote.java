@@ -23,4 +23,6 @@ public interface CreditServicesRemote {
 	List<Credit> findAllCredit();
 	
 	List<Credit> findCreditByCustomer(Customer customer);
+	
+	Number countCreditByType(String type);
 }
