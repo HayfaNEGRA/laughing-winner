@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import services.interfaces.EmployeeServicesLocal;
 import services.interfaces.EmployeeServicesRemote;
+import entities.CallOffer;
 import entities.Employee;
 import entities.HumanRessourceManager;
 import entities.InventoryManager;
@@ -157,5 +158,6 @@ public class EmployeeServices implements EmployeeServicesRemote,
 
 		return employee;
 	}
+	
 
 }

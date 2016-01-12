@@ -9,22 +9,42 @@ import services.interfaces.EmployeeServicesLocal;
 import entities.Cashier;
 import entities.Employee;
 import entities.HumanRessourceManager;
+import entities.InventoryManager;
+import entities.Provider;
 
 @ManagedBean
 @SessionScoped
 public class LoginBean {
 	private Employee employee = new Employee();
-
+	private Employee employeeLoggedIn = new Employee();
 	@EJB
 	private EmployeeServicesLocal employeeServicesLocal;
 
+	public Employee getEmployeeLoggedIn() {
+		return employeeLoggedIn;
+	}
+
+
+
+	public void setEmployeeLoggedIn(Employee employeeLoggedIn) {
+		this.employeeLoggedIn = employeeLoggedIn;
+	}
+
+
+
 	public String doLoginEmployee() {
 		String navigateTo = "";
-		Employee employeeLoggedIn = employeeServicesLocal.loginEmployee(
+		 employeeLoggedIn = employeeServicesLocal.loginEmployee(
 				employee.getEmail(), employee.getPassword());
 		if (employeeLoggedIn != null) {
 			if (employeeLoggedIn instanceof HumanRessourceManager) {
 				navigateTo = "";
+			}
+			else if (employeeLoggedIn instanceof Provider) {
+				navigateTo = "callOfferfilter";
+			}
+			else if (employeeLoggedIn instanceof InventoryManager) {
+				navigateTo = "imManageBid";
 			}
 			else if (employeeLoggedIn instanceof Cashier)
 			{

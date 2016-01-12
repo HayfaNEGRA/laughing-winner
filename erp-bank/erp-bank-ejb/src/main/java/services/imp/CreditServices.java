@@ -89,5 +89,16 @@ public class CreditServices implements CreditServicesRemote, CreditServicesLocal
 		query.setParameter("c", customer);
 		return query.getResultList();
 	}
+	
+	public Number countCreditByType(String type)
+	{
+		String jpql = "select COUNT(*) from Credit e where e.typeCrédit =:c";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("c", type);
+		Number x =  (Number) query.getSingleResult();
+		System.out.println(x);
+		return x;
+	
+	}
 
 }
