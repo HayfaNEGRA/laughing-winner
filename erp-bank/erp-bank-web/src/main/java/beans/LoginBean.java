@@ -41,10 +41,10 @@ public class LoginBean {
 				navigateTo = "";
 			}
 			else if (employeeLoggedIn instanceof Provider) {
-				navigateTo = "callOfferfilter";
+				navigateTo = "callOfferfilter?faces-redirect=true";
 			}
 			else if (employeeLoggedIn instanceof InventoryManager) {
-				navigateTo = "imManageBid";
+				navigateTo = "imManageBid?faces-redirect=true";
 			}
 			else if (employeeLoggedIn instanceof Cashier)
 			{
