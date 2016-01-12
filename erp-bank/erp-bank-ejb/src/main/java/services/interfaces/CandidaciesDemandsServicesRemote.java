@@ -15,6 +15,8 @@ Boolean addcandidaciesdemands(CandidaciesDemands candidaciesdemands);
 	CandidaciesDemands findcandidaciesdemandsById(Integer id);
 
 	Boolean updatecandidaciesdemands(CandidaciesDemands candidaciesdemands);
+	
+	Boolean updatecandidaciesdemands2(CandidaciesDemands candidaciesdemands);
 
 	Boolean deletecandidaciesdemands(CandidaciesDemands candidaciesdemands);
 

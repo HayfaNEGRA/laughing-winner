@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h1>add Employee</h1>
+	<br />
+
+	<h:form>
+		<h:panelGrid columns="2" style="width:500px;margin-left:5%;">
+			<h:outputText value="CIN" />
+			<p:inputText value="#{EmployeBean.employee.CIN}" />
+
+			<h:outputText value="firstname" />
+			<p:inputText value="#{EmployeBean.employee.firstName}" />
+
+			<h:outputText value="Lastname" />
+			<p:inputText value="#{EmployeBean.employee.lastName}" />
+
+			<h:outputText value="email" />
+			<p:inputText value="#{EmployeBean.employee.email}" />
+
+
+			<h:outputText value="Password" />
+			<p:inputText value="#{EmployeBean.employee.password}" />
+			<h:outputText value="sex" />
+
+			<p:selectOneMenu value="#{EmployeBean.employee.sexe}">
+				<f:selectItem itemValue="Man" itemLabel="Man" />
+				<f:selectItem itemValue="Woman" itemLabel="Woman" />
+			</p:selectOneMenu>
+
+
+			<h:outputText value="BirthDate" />
+			<p:inputText id="birthDate" value="#{EmployeBean.employee.birthDate}"
+				pt:type="date" requiredMessage="Birth date is required!">
+				<f:convertDateTime pattern="yyyy-MM-dd" />
+				<f:ajax event="blur" execute="@this" render="birthDateMessage" />
+			</p:inputText>
+
+			<h:outputText value="adress" />
+			<p:inputText value="#{EmployeBean.employee.adress}" />
+
+			<h:outputText value="Phone" />
+			<p:inputText value="#{EmployeBean.employee.phoneNumber}" />
+
+			<h:outputText value="Kids Number" />
+			<p:inputText value="#{EmployeBean.employee.kidsNumber}" />
+		</h:panelGrid>
+		<br></br>
+
+
+		<p:growl id="messages" showDetail="true" sticky="true" />
+
+		<p:commandButton class="btn btn-primary" value="save"
+			action="#{EmployeBean.doAddEmployee()}" />
+
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<p:dataTable emptyMessage="No Candidacies demands" paginator="true"
+			paginatorPosition="bottom" rows="" value="#{EmployeBean.employees}"
+			var="dem">
+
+			<p:column headerText="CIN">
+				<h:outputText value="#{dem.CIN}" />
+			</p:column>
+			<p:column headerText="firstname">
+				<h:outputText value="#{dem.firstName}" />
+			</p:column>
+			<p:column headerText="lastname">
+				<h:outputText value="#{dem.lastName}" />
+			</p:column>
+
+			<p:column headerText="sex">
+				<h:outputText value="#{dem.sexe}" />
+			</p:column>
+
+			<p:column headerText="phone">
+				<h:outputText value="#{dem.phoneNumber}" />
+			</p:column>
+			<p:column headerText="birthDate">
+				<h:outputText value="#{dem.birthDate}" />
+			</p:column>
+			<p:column headerText="adress">
+				<h:outputText value="#{dem.adress}" />
+			</p:column>
+			<p:column headerText="email">
+				<h:outputText value="#{dem.email}" />
+			</p:column>
+
+			<p:column headerText="action">
+				<h:form>
+					<p:commandButton value="Edit" action="#{EmployeBean.doUpdate()}"
+						update="@all">
+						<f:setPropertyActionListener target="#{EmployeBean.employee}"
+							value="#{dem}" />
+							<p:confirm header="Confirmation" message="Are you sure?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Yes" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+					<p:commandButton value="Delete"
+						action="#{EmployeBean.doDeleteEmployee()}" update="@all">
+						<f:setPropertyActionListener target="#{EmployeBean.employee}"
+							value="#{dem}" />
+						<p:confirm header="Confirmation" message="Are you sure?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Yes" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+				</h:form>
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+</body>
+</html>
