@@ -9,6 +9,8 @@ import services.interfaces.EmployeeServicesLocal;
 import entities.Cashier;
 import entities.Employee;
 import entities.HumanRessourceManager;
+import entities.InventoryManager;
+import entities.Provider;
 
 @ManagedBean
 @SessionScoped
@@ -37,6 +39,12 @@ public class LoginBean {
 		if (employeeLoggedIn != null) {
 			if (employeeLoggedIn instanceof HumanRessourceManager) {
 				navigateTo = "";
+			}
+			else if (employeeLoggedIn instanceof Provider) {
+				navigateTo = "callOfferfilter";
+			}
+			else if (employeeLoggedIn instanceof InventoryManager) {
+				navigateTo = "imManageBid";
 			}
 			else if (employeeLoggedIn instanceof Cashier)
 			{

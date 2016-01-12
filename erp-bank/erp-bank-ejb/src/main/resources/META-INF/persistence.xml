@@ -15,6 +15,8 @@
 		<class>entities.Credit</class>
 		<class>entities.Customer</class>
 		<class>entities.DemandeCredit</class>
+		<class>entities.DemandeCreditCard</class>
+		<class>entities.Demandecheque</class>
 		<class>entities.Employee</class>
 		<class>entities.HumanRessourceManager</class>
 		<class>entities.InventoryManager</class>

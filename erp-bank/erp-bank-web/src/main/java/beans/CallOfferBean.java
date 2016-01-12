@@ -27,13 +27,15 @@ public class CallOfferBean {
 	private List<CallOffer> callOffersFeltred;
 	private String password;
 	private String text;
+	private String description;
 	private Boolean test=false;
 	@Email(message = "must be a valid email")
 	private String email;
 	// injection of the proxy
 	@EJB
 	private CallOfferServicesLocal callOfferServicesLocal;
-	
+	@ManagedProperty(value = "#{loginBean}")
+	private LoginBean customerBean;
 
 	// Methods
 	public List<CallOffer> getCallOffers() {
@@ -46,9 +48,23 @@ public class CallOfferBean {
 		String navigateTo = "CallOfferSelected";
 		return navigateTo;
 	}
+	public void doDEleteCallOffer(String email)
+	{
+		callOfferServicesLocal.deleteBidByname(email);
+	}
 
 	public String doBind() {
 		String navigateTo = "bind";
+		
+		return navigateTo;
+	}
+	public String dofilter() {
+		String navigateTo = "callOfferfilter";
+		
+		return navigateTo;
+	}
+	public String domanage() {
+		String navigateTo = "manageBid";
 		
 		return navigateTo;
 	}
@@ -139,5 +155,41 @@ String navigateTo = "";
 	public void setText(String text) {
 		this.text = text;
 	}
+
+	public Boolean getTest() {
+		return test;
+	}
+
+	public void setTest(Boolean test) {
+		this.test = test;
+	}
+
+	public CallOfferServicesLocal getCallOfferServicesLocal() {
+		return callOfferServicesLocal;
+	}
+
+	public void setCallOfferServicesLocal(
+			CallOfferServicesLocal callOfferServicesLocal) {
+		this.callOfferServicesLocal = callOfferServicesLocal;
+	}
+
+	
+
+	public LoginBean getCustomerBean() {
+		return customerBean;
+	}
+
+	public void setCustomerBean(LoginBean customerBean) {
+		this.customerBean = customerBean;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 
 }

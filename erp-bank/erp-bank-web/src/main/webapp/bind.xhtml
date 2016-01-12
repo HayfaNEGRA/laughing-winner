@@ -8,65 +8,62 @@
 <h:head></h:head>
 <body>
 
-	<h2>Insert a valide email adress</h2>
-	<p:separator />
-
 	<h:form>
+	<p:menubar   >
+            
+            <p:submenu label="Services" style="font-size:16px;" icon="ui-icon-gear" >
+             <p:menuitem value="Call offers" style="font-size:16px;" icon="fa fa-gears" action = "#{callOfferBean.dofilter()}"/>
+             <p:menuitem value="manage bids" style="font-size:16px;" icon="fa fa-gears" action="#{callOfferBean.domanage()}"/>
+             
+            </p:submenu>
+            
+            <p:submenu label="#{loginCustomerBean.customerLoggedIn.email}" style="font-size:16px;" icon="fa fa-user" >
+            <p:menuitem value="Log out" style="font-size:16px;" icon="fa fa-power-off" action="#{loginCustomerBean.doLogout()}" />
+          </p:submenu>
+ 
+           
+    </p:menubar>
+    <p:spacer width="10"/>
 		<p:growl showDetail="true" />
 
-
-		<h:panelGrid columns="4" cellpadding="5">
-			<h:outputLabel for="email1" value="Email 1: (JSF Validation)" />
+		<h:panelGrid columns="2" cellpadding="4">
+			<h:outputLabel for="email1" value="Email:" />
 			<p:inputText id="email1" value="#{callOfferBean.text}">
 				<f:validator validatorId="custom.emailValidator" />
 			</p:inputText>
 			<p:message for="email1" display="tooltip" />
 			<h:outputText value="#{callOfferBean.text}" />
-			<p:commandButton value="email syntaxe" ajax="false"
-				icon="ui-icon-check" validateClient="true" />
+			<h:outputLabel value="Description:" />
+    <p:inputTextarea  value="#{callOfferBean.description}" rows="5" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="false" />
+    <h:outputText id="display" />
+
+			<p:spacer height="5"/>
+            <h:outputLabel   value="Upload required documents:" />
+			<p:fileUpload  fileUploadListener="#{fileUploadController.upload}"
+				allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="100000"
+				description="Upload required documents" />
+				
+
+			<p:messages showDetail="true" />
+
+			<p:spacer height="10" />
+
+			<p:captcha label="Captcha" />
+
+			<p:spacer height="10" />
+			Click to apply for this call offer: 
+<p:spacer height="10" />
+			<p:commandButton value="Confirm Bid" ajax="false"
+				icon="ui-icon-check" validateClient="true"
+				actionListener="#{captchaBean.submit}"
+				 
+				action="#{bidBean.doaddBid()}" />
 
 		</h:panelGrid>
 
 
 
 	</h:form>
-	<!--  
-	<form>
-		<h:panelGrid columns="2" id="matchGrid" cellpadding="5">
-			<h:outputLabel for="pwd1" value="Password 1: *" />
-			<p:password id="pwd1" value="#{callOfferBean.password}"
-				required="true" />
-
-		</h:panelGrid>
-	</form>
-	-->
-	<p:spacer height="10" />
-	<h2>Upload required Document</h2>
-	<p:separator />
-
-	<h:form id="form">
-
-		<p:fileUpload fileUploadListener="#{fileUploadController.upload}"
-			allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="100000"
-			description="Select Images" />
-
-	</h:form>
-	<p:spacer height="10" />
-	<h2>Verifying user response</h2>
-	<p:separator />
-	<h:form>
-		<p:messages showDetail="true" />
-		<p:captcha label="Captcha" />
-		<p:commandButton value="Check" actionListener="#{captchaBean.submit}"
-			ajax="false" />
-	</h:form>
-	<p:spacer height="10" />
-	<p:separator />
-	<h:form>
-	<p:commandButton action="#{bidBean.doaddBid()}" >
-					
-	</p:commandButton>
-</h:form>
 
 	<script type="text/javascript">
     /**

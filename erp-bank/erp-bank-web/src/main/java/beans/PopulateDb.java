@@ -1,19 +1,23 @@
 package beans;
 
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
+import services.interfaces.BankAccountServicesRemote;
 import services.interfaces.CashierServicesRemote;
 import services.interfaces.CreditServicesRemote;
 import services.interfaces.CustomerServicesRemote;
 import services.interfaces.DemandeCreditServicesRemote;
+import entities.BankAccount;
 import entities.Cashier;
 import entities.Credit;
-import entities.Customer;
 import entities.DemandeCredit;
+
 
 /**
  * Session Bean implementation class PopulateDb
@@ -31,6 +35,9 @@ public class PopulateDb {
 	private CustomerServicesRemote customerServicesRemote;
 	@EJB
 	private CashierServicesRemote cashierServicesRemote;
+	
+	@EJB
+	private BankAccountServicesRemote bankAccountServicesRemote;
 
 	/**
 	 * Default constructor.
@@ -46,6 +53,12 @@ public class PopulateDb {
 		DemandeCredit demande2= new DemandeCredit();
 		
 		Cashier cashier = new Cashier();
+
+		BankAccount banker = new BankAccount();
+		banker.setCreationDate(new Date());
+		banker.setBankAccountNumber(123456);
+		banker.setBalance(10000.00);
+
 		demande.setDescription("fghjklfghjklfghjk");
 		demande.setType("2");
 		demande.setMontant((float) 20);
@@ -73,6 +86,9 @@ public class PopulateDb {
 		
 		cashier.setEmail("Joe2");
 		cashier.setPassword("Joe2");
+
+
+		bankAccountServicesRemote.addBankAccount(banker);
 
 		demandeCreditServicesRemote.adddemandecredit(demande2);
 		demandeCreditServicesRemote.adddemandecredit(demande);

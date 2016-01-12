@@ -2,8 +2,10 @@ package entities;
 
 import entities.CallOffer;
 import entities.Provider;
+
 import java.io.Serializable;
 import java.lang.Integer;
+
 import javax.persistence.*;
 
 /**
@@ -16,11 +18,15 @@ public class Bid implements Serializable {
 
 	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String providerEmail;
-	private String providerPassword;
+	private String callOfferName;
 	private Provider provider;
 	private CallOffer calloffer;
+	private String discription;
+	private String contactEmail;
+	private Boolean accepted;
 	private static final long serialVersionUID = 1L;
 
 	public Bid() {
@@ -53,11 +59,30 @@ public class Bid implements Serializable {
 	public void setProviderEmail(String providerEmail) {
 		this.providerEmail = providerEmail;
 	}
-	public String getProviderPassword() {
-		return providerPassword;
+	
+	public String getCallOfferName() {
+		return callOfferName;
 	}
-	public void setProviderPassword(String providerPassword) {
-		this.providerPassword = providerPassword;
+	public void setCallOfferName(String callOfferName) {
+		this.callOfferName = callOfferName;
+	}
+	public String getDiscription() {
+		return discription;
+	}
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
+	public String getContactEmail() {
+		return contactEmail;
+	}
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+	public Boolean getAccepted() {
+		return accepted;
+	}
+	public void setAccepted(Boolean accepted) {
+		this.accepted = accepted;
 	}
    
 }
