@@ -11,9 +11,13 @@
 <h:head></h:head>
 <h:form>
 
+<tr><td>
 <h1> Ask For a Checkbook</h1>
-
-<h:panelGrid columns="2" style="width:500px;margin-left:5%;" >
+<br />
+<br />
+</td></tr>
+<tr><td>
+<h:panelGrid columns="3"  >
 <h:outputText value="Number of papers" />
 <p:selectOneMenu value="#{demandeChequeBean.demandeCheque.nombreCheque}" >
 						
@@ -22,11 +26,21 @@
 						<f:selectItem itemLabel="50" itemValue="50"/>
 						
 					</p:selectOneMenu>
+					<br></br>
+			
 
 <p:commandButton action="#{demandeChequeBean.doAddDemandeCredit()}" value="Confirm" >
 
 </p:commandButton>
+<br /><br /><br /><br />
 </h:panelGrid>
+</td></tr>
+<tr><td>
+<img src="Images/carnet-de-cheque.jpg" />
+<br />
+<br /><br />
+<br /><br />
+</td></tr>
 
 </h:form>
 </ui:define>

@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import entities.CallOffer;
 import entities.Credit;
 import entities.Customer;
+import entities.DemandeCredit;
 import services.interfaces.CreditServicesLocal;
 import services.interfaces.CreditServicesRemote;
 
@@ -84,12 +85,12 @@ public class CreditServices implements CreditServicesRemote, CreditServicesLocal
 	}
 	@Override
 	public List<Credit> findCreditByCustomer(Customer customer) {
-		String jpql = "select e from Credit e where e.customer =:c";
+		String jpql = "select e from Credit e where e.client =:c";
 		Query query = entityManager.createQuery(jpql);
 		query.setParameter("c", customer);
 		return query.getResultList();
 	}
-	
+
 	public Number countCreditByType(String type)
 	{
 		String jpql = "select COUNT(*) from Credit e where e.typeCrédit =:c";

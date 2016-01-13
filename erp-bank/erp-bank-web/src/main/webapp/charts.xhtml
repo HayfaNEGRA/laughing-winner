@@ -1,9 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+	
+<ui:define name="title">ADD</ui:define>   
+	<ui:define name="content">
 
 <h:head></h:head>
 <body>
@@ -12,20 +16,6 @@
 
 		<h:form>
 
-	<p:menubar   >
-            
-            <p:submenu label="Actions" style="font-size:16px;" icon="ui-icon-gear" >
-             <p:menuitem value="Manage Credits" style="font-size:16px;" icon="fa fa-gears" action = "#{demandeCreditBean.doGoToAllCredits()}"/>
-             <p:menuitem value="Credit Statistics" style="font-size:16px;" icon="fa fa-gears" action="#{demandeCreditBean.doGoToChart()}"/>
-             
-            </p:submenu>
-            
-            <p:submenu label="#{loginBean.employeeLoggedIn.email}" style="font-size:16px;" icon="fa fa-user" >
-            <p:menuitem value="Log out" style="font-size:16px;" icon="fa fa-power-off" action="#{loginBean.doLogout()}" />
-          </p:submenu>
- 
-           
-    </p:menubar>
     
     
 
@@ -42,4 +32,5 @@
 
 	
 </body>
-</html>
+</ui:define>
+</ui:composition>

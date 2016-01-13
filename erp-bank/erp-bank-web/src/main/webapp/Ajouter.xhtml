@@ -1,16 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
 
-<h:head></h:head>
+	<ui:define name="content">
+<h:head>
+
+</h:head>
+
 <body>
 	
 <h:form>
-
-	<p:menubar   >
+ 
+	
+	<p:menubar>
             <p:submenu label="Home" style="font-size:16px;" icon="ui-icon-gear" >
             </p:submenu>
             <p:submenu label="Actions" style="font-size:16px;" icon="ui-icon-gear" >
@@ -86,5 +92,7 @@
         <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
     </p:confirmDialog>
 	</h:form>
+	
 </body>
-</html>
+</ui:define>
+</ui:composition>
