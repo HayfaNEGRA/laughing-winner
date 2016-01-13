@@ -91,4 +91,19 @@ public class CandidaciesDemandsServices implements CandidaciesDemandsServicesRem
 				return query.getResultList();
 	}
 
+	@Override
+	public Boolean updatecandidaciesdemands2(
+			CandidaciesDemands candidaciesdemands) {
+		
+		Boolean b = false;
+		
+		try {
+			entityManager.merge(candidaciesdemands);
+			b = true;
+		} catch (Exception e) {
+			System.err.println("ouups ...");
+		}
+		return b;
+}
+
 }

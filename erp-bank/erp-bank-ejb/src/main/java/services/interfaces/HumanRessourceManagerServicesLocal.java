@@ -19,6 +19,8 @@ public interface HumanRessourceManagerServicesLocal {
 
 	Boolean deletehumanressource_manager(HumanRessourceManager humanressource_manager);
 
-	List<HumanRessourceManager> findAllHumanRessourceManager();	
+	List<HumanRessourceManager> findAllHumanRessourceManager();
+
+	HumanRessourceManager Findhumanressource_managerByLastName(String lastName);	
 
 }

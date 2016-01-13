@@ -45,7 +45,8 @@ public class CallOfferBean {
 	}
 
 	public String doselect() {
-		String navigateTo = "CallOfferSelected";
+		
+		String navigateTo = "CallOfferSelected?faces-redirect=true";
 		return navigateTo;
 	}
 	public void doDEleteCallOffer(String email)
@@ -54,17 +55,17 @@ public class CallOfferBean {
 	}
 
 	public String doBind() {
-		String navigateTo = "bind";
+		String navigateTo = "bind?faces-redirect=true";
 		
 		return navigateTo;
 	}
 	public String dofilter() {
-		String navigateTo = "callOfferfilter";
+		String navigateTo = "callOfferfilter?faces-redirect=true";
 		
 		return navigateTo;
 	}
 	public String domanage() {
-		String navigateTo = "manageBid";
+		String navigateTo = "manageBid?faces-redirect=true";
 		
 		return navigateTo;
 	}

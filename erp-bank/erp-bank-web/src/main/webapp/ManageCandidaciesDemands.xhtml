@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+<h:form>
+	<h1>manage Candidacies demands</h1>
+	<br />
+	<p:dataTable emptyMessage="No Candidacies demands"
+					 paginator="true"
+					 paginatorPosition="bottom"
+					 rows=""
+					 value="#{candidatureBean.candidaciesDemandsList}"
+					 var="dem">
+		
+		<p:column headerText="#">
+			<h:outputText value="#{dem.idDemand}" />
+		</p:column>
+		<p:column headerText="firstname">
+			<h:outputText value="#{dem.firstname}" />
+		</p:column>
+		<p:column headerText="lastname">
+			<h:outputText value="#{dem.lastname}" />
+		</p:column>
+		<p:column headerText="phone">
+			<h:outputText value="#{dem.phone}" />
+		</p:column>
+		
+		<p:column headerText="motivation">
+		<p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+    <p:graphicImage name="C:/Users/skandar/Desktop/images/#{dem.motivation}" />
+</p:dialog>
+			<p:commandButton  value="download"  ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+			 <p:fileDownload value="#{fileDownloadView.file}" />
+			</p:commandButton>
+			<h:outputText value="#{dem.motivation}" />
+		</p:column>
+		<p:column headerText="email">
+			<h:outputText value="#{dem.email}" />
+		</p:column>
+		<p:column headerText="Human ressource manager">
+			<h:outputText value="#{dem.humanressourcemanager.firstName}" /><br />
+			<h:outputText value="#{dem.humanressourcemanager.lastName}" />
+		</p:column>
+		<p:column headerText="Status">
+			<h:outputText value="#{dem.isDeleted}" />
+		</p:column>
+		<p:column headerText="Action">
+			<h:form>
+				<p:commandButton  value="Accept" action="#{candidatureBean.doAccept()}" update="@all" ajax="true">
+				<f:setPropertyActionListener target="#{candidatureBean.candidaciesDemands}"
+						value="#{dem}"  />
+						<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+				<p:commandButton  value="Delete" action="#{candidatureBean.doDeleteDemand()}" update="@all">
+				<f:setPropertyActionListener target="#{candidatureBean.candidaciesDemands}"
+						value="#{dem}" />
+						<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"  />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+			</h:form>
+		</p:column>
+	</p:dataTable></h:form>
+	 <script type="text/javascript">
+function start() {
+    PF('statusDialog').show();
+}
+ 
+function stop() {
+    PF('statusDialog').hide();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h1>add Candidacie demand</h1>
+	<br />
+
+	<h:form>
+		<h:panelGrid columns="2" style="width:500px;margin-left:5%;">
+
+			<h:outputText value="firstname" />
+			<p:inputText value="#{candidatureBean.candidaciesDemands.firstname}" />
+
+			<h:outputText value="Lastname" />
+			<p:inputText value="#{candidatureBean.candidaciesDemands.lastname}" />
+
+			<h:outputText value="email" />
+			<p:inputText value="#{candidatureBean.candidaciesDemands.email}" />
+
+			<h:outputText value="phone" />
+			<p:inputText value="#{candidatureBean.candidaciesDemands.phone}" />
+
+
+			<h:outputText value="manager" />
+			<h:selectOneMenu value="#{candidatureBean.manager}"
+				converter="#{managerConverter}">
+				<f:selectItems value="#{candidatureBean.managers}" var="man"
+					itemValue="#{man}" itemLabel="#{man.lastName}" />
+			</h:selectOneMenu>
+
+			<h:outputText value="motivation" />
+			<p:fileUpload
+				fileUploadListener="#{candidatureBean.handleFileUpload}"
+				mode="advanced" update="messages" label="Select Images"
+				style="width:300px;" allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+				invalidSizeMessage="
+                The maximum file size allowed is 1 Megabyte !"
+				invalidFileMessage="You are allowed to upload only images !" />
+			<!-- 			<p:inputText value="#{candidatureBean.candidaciesDemands.motivation}" /> -->
+
+
+
+
+
+
+
+
+		</h:panelGrid>
+		<br></br>
+
+
+
+		<p:growl id="messages" showDetail="true" sticky="true" />
+
+
+
+
+		<p:commandButton class="btn btn-primary" value="save"
+			action="#{candidatureBean.doAddCandidaciesDemands()}" >
+			<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+			</p:commandButton>
+          <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+
+
+	</h:form>
+</body>
+</html>

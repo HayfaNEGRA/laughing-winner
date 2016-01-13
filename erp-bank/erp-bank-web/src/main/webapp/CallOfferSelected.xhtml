@@ -15,7 +15,7 @@
 			<p:tab title="Call Offer : #{c.id}">
 				<h:panelGrid columns="2" cellpadding="5">
 					<f:facet name="header">
-						<p:graphicImage library="/resources/Images" name="img.png" />
+						<p:graphicImage library="Images" name="#{c.id}.png" />
 					</f:facet>
 					<h:outputText value="call offer title:" style="font-weight: bold" />
 					<h:outputText value="#{c.name}" />
